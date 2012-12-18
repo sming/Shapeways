@@ -89,7 +89,7 @@ public class ArtistPairFinder {
 				BitSet bsAcopy = (BitSet) bsA.clone();
 				bsAcopy.and(bsB);
 
-				if (bsAcopy.cardinality() > STICKY_THRESHOLD) {
+				if (bsAcopy.cardinality() >= STICKY_THRESHOLD) {
 					if (artistA.compareTo(artistB) > 0)
 						stickyPairs.add(artistA + ", " + artistB);
 					else
