@@ -1,8 +1,13 @@
 Shapeways
 =========
 
-Coding Challenge
+To run the program, just pass in the path to the file containing the list of artists as follows:
 
+java psk.shapeways.ArtistPairFinder ../Artist_lists_small.txt
+
+
+Coding Challenge
+---
 The attached text file "Artist_lists_small.txt" contains the favorite musical artists of 1000 users from LastFM. Each line is a list of up to 50 artists, formatted as follows:
 
 Radiohead,Pulp,Morrissey,Delays,Stereophonics,Blur,Suede,Sleeper,The La's,Super Furry Animals
