@@ -1,83 +1,154 @@
 package psk.shapeways;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Driver {
-	
+
+	private static final int STICKY_THRESHOLD = 50;
+
 	private static final int numUsers = 1000;
-	// Map of Artist to yes/no for each User Fave List
-	// Artist -> [ 1, 1, 0, 0, 0 ... 1 ]
+
+	/**
+	 * This map is central to the algorithm. It maps each unique artist (across
+	 * all lists) to a bit array. Each bit in the bit array represents the
+	 * presence of that artist in that list. For example: Radiohead -> [ 0 0 0 0
+	 * 1 ] means that lists 1 through 4 don't have Radiohead but list 5 does.
+	 */
 	Map<String, BitSet> artist2List = new HashMap<String, BitSet>();
-	private List<String> lists;
-	
+
+	private List<String> userLists;
+	private Set<String> stickyPairs = new TreeSet<String>();
+
 	public Driver(List<String> lists) {
-		this.lists = lists;
+		this.userLists = lists;
 	}
 
 	public static void main(String[] argv) {
+		if (argv.length != 1) {
+			System.err.println("Please supply the input music list file name");
+			return;
+		}
+
+		List<String> lists = null;
+
 		try {
-			List<String> lists = ArtistListReader
-					.read("C:\\Users\\Peter\\Downloads\\Artist_lists_small.txt");
-			
-			Driver d = new Driver(lists);
-			d.buildBandBitSets();
-			//System.out.println(d);
-			d.findPairs();
-			
+			System.out.println("Reading input file");
+			lists = ArtistListReader.read(argv[0]);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.err.println("Couldn't read file " + argv[0]);
+			return;
+		}
+
+		Driver d = new Driver(lists);
+		d.buildArtistBitSets();
+		d.findPairs();
+		d.writePairs();
+
+	}
+
+	private void writePairs() {
+		
+		System.out.println("Writing output to file");
+		String fileName = "Artist_sticky_pairs.txt";
+		String sep = System.getProperty("line.separator");
+		
+		Writer out = null;
+		try {
+			out = new BufferedWriter(new FileWriter(fileName, false));
+			for (String pair : stickyPairs) {
+				out.write(pair);
+				out.write(sep);
+			}
+
+		} catch (IOException e) {
+			System.err.println("Problem writing to the output file");
+		} finally {
+			try {
+				out.close();
+				System.out.println("Wrote output pairs to " + fileName);
+			} catch (IOException e) {
+				System.err.println("Problem closing the output file");
+			}
 		}
 
 	}
-	
+
+	/**
+	 * Perform an inner loop over all unique artists so that we can examine
+	 * every pair. Get the bitset for each pair of artists and AND them. The
+	 * number of TRUE bits represents the number of user lists that have both
+	 * artists. If this is greater than 50, write the pair to file as specified
+	 */
 	private void findPairs() {
-		Set<String> artists = artist2List.keySet();
+
+		System.out.println("Finding pairs of artists");
+		
+		String[] artists = artist2List.keySet().toArray(new String[0]);
+
 		int count = 0;
-		for (String artistA : artists) {
-			for (String artistB : artists) {
-				//System.out.println(artistA + ", " + artistB);
-				++count;
-			}			
-		}
-		System.out.println("Count " + count);
-		
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder bld = new StringBuilder();
-		
-		for (String band : artist2List.keySet()) {
-			bld.append(band + " -> [ ");
-			BitSet bs = artist2List.get(band);
-			for (int i = 0; i < bs.length(); i++) {
-				bld.append(bs.get(i) + ", ");
-			}
-			bld.append(" ]\n");
-		}
-		
-		return bld.toString();
-	}
-
-	private void buildBandBitSets() {
-		int listID = 0;
-		for (String list : lists) {
-			String[] bands = list.split(",");
-			for (String band : bands) {
-				BitSet bs = artist2List.get(band);
-				if (bs == null) 
-					bs = new BitSet(numUsers);
-				
-				bs.set(listID);
-				artist2List.put(band, bs);
-			}
+		for (int i = 0; i < artists.length; i++) {
 			
+			String artistA = artists[i];
+			BitSet bsA = artist2List.get(artistA);
+
+			for (int j = i; j < artists.length; j++) {
+				++count;
+				
+				String artistB = artists[j];
+				
+				if (artistA == artistB)
+					continue; // intentional identity comparison
+
+				BitSet bsB = artist2List.get(artistB);
+
+				// clone A since the and operation is destructive
+				BitSet bsAcopy = (BitSet) bsA.clone();
+				bsAcopy.and(bsB);
+
+				if (bsAcopy.cardinality() > STICKY_THRESHOLD) {
+					if (artistA.compareTo(artistB) > 0)
+						stickyPairs.add(artistA + ", " + artistB);
+					else
+						stickyPairs.add(artistB + ", " + artistA);
+				}
+			}
+		}
+		
+		System.out.println(count + " pairs tested");
+	}
+
+	/**
+	 * Peel out every artist from every list. For every artist, create a bitset
+	 * numUsers large. Each bit represents whether that artist is in that user
+	 * list. Set this list's bit to true for this artist. This tracks which
+	 * lists have which artists.
+	 */
+	private void buildArtistBitSets() {
+		System.out.println("Building artist list data structure");
+		int listID = 0;
+		for (String list : userLists) {
+			String[] artists = list.split(",");
+
+			for (String artist : artists) {
+				if (artist.equals(""))
+					continue; // TODO: report empty band
+				BitSet bs = artist2List.get(artist);
+				if (bs == null)
+					bs = new BitSet(numUsers);
+
+				bs.set(listID);
+				artist2List.put(artist, bs);
+			}
+
 			++listID;
 		}
 	}
