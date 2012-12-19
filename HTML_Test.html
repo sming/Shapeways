@@ -1,0 +1,193 @@
+<html>
+<head>
+<style type="text/css">
+.questionContainer {
+	border: 1px solid #000000;
+}
+
+.questionContainer ul {
+	
+}
+
+.questionContainer li {
+	padding: 14px;
+}
+
+.foo {
+	border: 1px;
+	color: #FFFFFF;
+}
+
+.invisibleQuestion {
+	display: none;
+}
+
+#question3 {
+	color: #0000FF;
+}
+table {
+	border:1px solid black;
+}
+</style>
+<script type="text/javascript">
+    // Q: Describe what these functions do using line comments
+    function alertValue(value)
+    {
+      window.alert(value);
+    }
+
+    function beginTheTest()
+    {
+      var introduction = document.getElementById("introduction");
+      var theTest = document.getElementById("theTest");
+
+      introduction.style.display = "none";
+      theTest.style.display = "block";
+    }
+  </script>
+<title>Shapeways.com HTML Test</title>
+</head>
+<body>
+	<div id="introduction" style="display: block">
+		<h1>Shapeways.com HTML Test</h1>
+		<h2>Instructions</h2>
+		<p class="instructionContent">
+			Using the text-editor of your choice, make changes to this HTML
+			document as instructed in the questions below.<br> Each question
+			will be marked with <strong>Q</strong>.<br> Please modify this
+			HTML with your answers. <br> <br> Recommended Resources:
+		<ul>
+			<li>The Internet</li>
+			<li><a href="http://www.google.com/">Google</a></li>
+			<li><a href="http://www.google.com/search?q=TextPad+download">TextPad</a></li>
+			<li><a href="http://www.google.com/search?q=HTML">HTML
+					Tutorial</a></li>
+			<li><a href="http://www.google.com/search?q=CSS+Tutorial">CSS
+					Tutorial</a></li>
+			<li><a href="http://www.google.com/search?q=Javascript+Tutorial">Javascript
+					Tutorial</a></li>
+		</ul>
+		<br> Save your test as [yourName]-test.html<br> <br> <a
+			href="javascript:void(0);" onclick="beginTheTest()">Click here to
+			begin the test</a>
+		</p>
+	</div>
+	<style type="text/css">
+.invisibleQuestion {
+	filter: alpha(opacity =   40);
+	-moz-opacity: 0.4;
+	opacity: 0.4;
+}
+</style>
+	<div id="theTest" style="display: none;">
+
+		<h2>Questions</h2>
+		<div id="questions" class="questionContainer">
+			<ul>
+				<li id="question1"><strong>Q:</strong> Add this question to the
+					unordered list shown below.</li>
+				<li id="question2" style="color: #0000FF;"><strong>Q:</strong>
+					Make this question blue using an inline style.</li>
+				<li id="question3"><strong>Q:</strong> Make sure this question
+					has a unique id. Make this question blue using an external id
+					selector.</li>
+				<li id="question4"><strong>Q:</strong>
+					<h3 style="display: inline">Feature Question</h3>
+					<br> Add a table inside this list item.<br>
+					<table >
+					<tbody >
+						<tr>
+							<td width=45px></td>
+							<td width=45px></td>
+							<td width=45px></td>
+						</tr>
+						<tr>
+							<td width=45px></td>
+							<td width=45px style="background-color: #FF0000"></td>
+							<td width=45px></td>
+						<tr>
+							<td width=45px></td>
+							<td width=45px></td>
+							<td width=45px></td>
+						</tr>
+						<tr>
+							<td width=45px></td>
+							<td width=45px></td>
+							<td width=45px></td>
+						</tr>
+						</tbody>
+					</table></li>
+				<li id="question5"><strong>Q:</strong> Create a link to the URL
+					http://www.theladders.com/job-search and make the link text
+					&quot;Job Search&quot; Give this question a top margin of 15px, and
+					a background image from the internet.</li>
+				<li id="question6"><strong>Q:</strong>
+					<h3 style="display: inline">Feature Question</h3>
+					<br> Create a button below this sentence.<br> When the
+					button is clicked, make an alert box appear that says
+					&quot;I&#39;ve done it!&quot;<br></li>
+				<li id="question7"><strong>Q:</strong> Make this question bold
+					using css. Use an external class selector to apply the style.</li>
+				<li id="question8"><strong>Q:</strong> Make all &lt;li&gt;
+					elements in the Instructions section dark gray (text-color
+					#383838;) using a single css class selector.</li>
+				<li id="question9"><strong>Q:</strong> <span
+					class="invisibleQuestion"> Make this question visible. </span></li>
+				<li id="question10"><strong>Q:</strong> <span> Describe
+						the differences between the IE6, IE7, and W3C box models. </span></li>
+				<li id="question11"><strong>Q:</strong> <span> Extract
+						all inline styles in this test to external class selectors. </span></li>
+				<li id="question12"><strong>Q:</strong>
+					<h3 style="display: inline">Adventure Question</h3>
+					<ul>
+						<li>Add a semi-transparent box which is centered on the
+							screen.</li>
+						<li>Give the box a 3px black border.</li>
+						<li>Make the background of the box a light-beige.</li>
+						<li>Make the box 500px wide and 257px tall.</li>
+						<li>Include a paragraph of green sample text in the box.</li>
+						<li><strong>BONUS:</strong> Have a link in the top right
+							corner which closes the box.</li>
+					</ul></li>
+				<li id="question13"><strong>Q:</strong>
+					<h3 style="display: inline">Adventure Question</h3>
+					<br> Change the functionality of the &quot;begin the
+					test&quot; link:
+					<ul>
+						<li>use the <strong>YUI javascript library</strong> to
+							animate the introduction box closing.
+						</li>
+						<li>use the <strong>YUI javascript library</strong> to fade
+							the test box in.
+						</li>
+					</ul></li>
+				<li id="question14"><strong>Q:</strong>
+					<h3 style="display: inline">Feature Question</h3>
+					<br>
+					<ol>
+						<li>Show how to include a variable in a page using PHP</li>
+						<li>Show how to loop over a collection of elements in PHP</li>
+						<li>Show an IF conditional in PHP</li>
+						<li>Show an IF/ELSEIF/ELSE conditional in PHP</li>
+						<li>Show three ways to include content from another file in
+							PHP</li>
+					</ol></li>
+				<li id="question15"><strong>Q:</strong>
+					<h3 style="display: inline">Adventure Question</h3>
+					<br> Describe the MVC design pattern as it applies to web
+					servers - start from initial HTTP request and end with writing the
+					response.</li>
+				<li id="question16"><strong>Q:</strong>
+					<h3 style="display: inline">Feature Question</h3>
+					<br> Describe the pros and cons of version control.</li>
+			</ul>
+		</div>
+
+	</div>
+	<style type="text/css">
+.invisibleQuestion {
+	color: #FFFFFF;
+}
+</style>
+</body>
+</html>
