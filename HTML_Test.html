@@ -1,54 +1,15 @@
 <html>
 <head>
-<style type="text/css">
-.questionContainer {
-	border: 1px solid #000000;
-}
-
-.questionContainer ul {
-	
-}
-
-.questionContainer li {
-	padding: 14px;
-}
-
-.foo {
-	border: 1px;
-	color: #FFFFFF;
-}
-
-.invisibleQuestion {
-	display: none;
-}
-
-#question3 {
-	color: #0000FF;
-}
-table {
-	border:1px solid black;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="Saks.css">
+<script src="http://yui.yahooapis.com/3.8.0/build/yui/yui-min.js"></script>
 <script type="text/javascript">
-    // Q: Describe what these functions do using line comments
-    function alertValue(value)
-    {
-      window.alert(value);
-    }
+</script>
+<script src="Saks.js" type="text/javascript"></script>
 
-    function beginTheTest()
-    {
-      var introduction = document.getElementById("introduction");
-      var theTest = document.getElementById("theTest");
-
-      introduction.style.display = "none";
-      theTest.style.display = "block";
-    }
-  </script>
 <title>Shapeways.com HTML Test</title>
 </head>
 <body>
-	<div id="introduction" style="display: block">
+	<div id="introduction">
 		<h1>Shapeways.com HTML Test</h1>
 		<h2>Instructions</h2>
 		<p class="instructionContent">
@@ -56,8 +17,8 @@ table {
 			document as instructed in the questions below.<br> Each question
 			will be marked with <strong>Q</strong>.<br> Please modify this
 			HTML with your answers. <br> <br> Recommended Resources:
-		<ul>
-			<li>The Internet</li>
+		<ul class="instructionList">
+			<li class="greyList">The Internet</li>
 			<li><a href="http://www.google.com/">Google</a></li>
 			<li><a href="http://www.google.com/search?q=TextPad+download">TextPad</a></li>
 			<li><a href="http://www.google.com/search?q=HTML">HTML
@@ -70,19 +31,21 @@ table {
 		<br> Save your test as [yourName]-test.html<br> <br> <a
 			href="javascript:void(0);" onclick="beginTheTest()">Click here to
 			begin the test</a>
-		</p>
 	</div>
-	<style type="text/css">
-.invisibleQuestion {
-	filter: alpha(opacity =   40);
-	-moz-opacity: 0.4;
-	opacity: 0.4;
-}
-</style>
-	<div id="theTest" style="display: none;">
+	<div id="theTest"  style="display:none;">
+		<!-- TODO: revert -->
 
 		<h2>Questions</h2>
 		<div id="questions" class="questionContainer">
+			<div id="textbox">
+				<div class="boxBackground"></div>
+				<div class="boxContent">
+					<p>This is the green content. Lovely.</p>
+					<div class="boxButton">
+						<button onclick="boxButtonClicked();" type="button">Close</button>
+					</div>
+				</div>
+			</div>
 			<ul>
 				<li id="question1"><strong>Q:</strong> Add this question to the
 					unordered list shown below.</li>
@@ -92,53 +55,61 @@ table {
 					has a unique id. Make this question blue using an external id
 					selector.</li>
 				<li id="question4"><strong>Q:</strong>
-					<h3 style="display: inline">Feature Question</h3>
-					<br> Add a table inside this list item.<br>
-					<table >
-					<tbody >
-						<tr>
-							<td width=45px></td>
-							<td width=45px></td>
-							<td width=45px></td>
-						</tr>
-						<tr>
-							<td width=45px></td>
-							<td width=45px style="background-color: #FF0000"></td>
-							<td width=45px></td>
-						<tr>
-							<td width=45px></td>
-							<td width=45px></td>
-							<td width=45px></td>
-						</tr>
-						<tr>
-							<td width=45px></td>
-							<td width=45px></td>
-							<td width=45px></td>
-						</tr>
+					<h3 class=inlineQ>Feature Question</h3> <br> Add a table inside
+					this list item.<br> &mdash; Make 4 rows and 3 cells, cells with a
+					width of 45px.<br> &mdash; Give the table a border.<br> &mdash;
+					Give the cell at 2,2 a red background.<br> <br>
+					<table>
+						<tbody>
+							<tr>
+								<td width=45px></td>
+								<td width=45px></td>
+								<td width=45px></td>
+							</tr>
+							<tr>
+								<td width=45px></td>
+								<td width=45px style="background-color: #FF0000"></td>
+								<td width=45px></td>
+							<tr>
+								<td width=45px></td>
+								<td width=45px></td>
+								<td width=45px></td>
+							</tr>
+							<tr>
+								<td width=45px></td>
+								<td width=45px></td>
+								<td width=45px></td>
+							</tr>
 						</tbody>
 					</table></li>
 				<li id="question5"><strong>Q:</strong> Create a link to the URL
 					http://www.theladders.com/job-search and make the link text
 					&quot;Job Search&quot; Give this question a top margin of 15px, and
-					a background image from the internet.</li>
+					a background image from the internet. <a class="marginImageLink"
+					href="http://www.theladders.com/job-search">Job Search</a></li>
 				<li id="question6"><strong>Q:</strong>
-					<h3 style="display: inline">Feature Question</h3>
-					<br> Create a button below this sentence.<br> When the
-					button is clicked, make an alert box appear that says
-					&quot;I&#39;ve done it!&quot;<br></li>
+					<h3 class=inlineQ>Feature Question</h3> <br> Create
+					a button below this sentence.<br> When the button is clicked,
+					make an alert box appear that says &quot;I&#39;ve done it!&quot;<br>
+					<button onclick="buttonClicked();" type="button">Click Me!</button>
+				</li>
 				<li id="question7"><strong>Q:</strong> Make this question bold
 					using css. Use an external class selector to apply the style.</li>
 				<li id="question8"><strong>Q:</strong> Make all &lt;li&gt;
 					elements in the Instructions section dark gray (text-color
 					#383838;) using a single css class selector.</li>
 				<li id="question9"><strong>Q:</strong> <span
-					class="invisibleQuestion"> Make this question visible. </span></li>
+					> Make this question visible. </span></li>
 				<li id="question10"><strong>Q:</strong> <span> Describe
-						the differences between the IE6, IE7, and W3C box models. </span></li>
+						the differences between the IE6, IE7, and W3C box models. 
+						<p>Internet Explorer in "quirks mode" includes the content,
+							padding and borders within the specified width or height. This
+							results in narrower or shorter boxes than the standard behavior.
+				</span></li>
 				<li id="question11"><strong>Q:</strong> <span> Extract
 						all inline styles in this test to external class selectors. </span></li>
 				<li id="question12"><strong>Q:</strong>
-					<h3 style="display: inline">Adventure Question</h3>
+					<h3 class=inlineQ>Adventure Question</h3>
 					<ul>
 						<li>Add a semi-transparent box which is centered on the
 							screen.</li>
@@ -146,13 +117,13 @@ table {
 						<li>Make the background of the box a light-beige.</li>
 						<li>Make the box 500px wide and 257px tall.</li>
 						<li>Include a paragraph of green sample text in the box.</li>
-						<li><strong>BONUS:</strong> Have a link in the top right
-							corner which closes the box.</li>
+						<li><strong>BONUS:</strong> Have a link in the top right corner
+							which closes the box.
+							</li>
 					</ul></li>
 				<li id="question13"><strong>Q:</strong>
-					<h3 style="display: inline">Adventure Question</h3>
-					<br> Change the functionality of the &quot;begin the
-					test&quot; link:
+					<h3 class=inlineQ>Adventure Question</h3> <br>
+					Change the functionality of the &quot;begin the test&quot; link:
 					<ul>
 						<li>use the <strong>YUI javascript library</strong> to
 							animate the introduction box closing.
@@ -162,8 +133,7 @@ table {
 						</li>
 					</ul></li>
 				<li id="question14"><strong>Q:</strong>
-					<h3 style="display: inline">Feature Question</h3>
-					<br>
+					<h3 class=inlineQ>Feature Question</h3> <br>
 					<ol>
 						<li>Show how to include a variable in a page using PHP</li>
 						<li>Show how to loop over a collection of elements in PHP</li>
@@ -173,21 +143,61 @@ table {
 							PHP</li>
 					</ol></li>
 				<li id="question15"><strong>Q:</strong>
-					<h3 style="display: inline">Adventure Question</h3>
-					<br> Describe the MVC design pattern as it applies to web
-					servers - start from initial HTTP request and end with writing the
-					response.</li>
+					<h3 class=inlineQ>Adventure Question</h3> <br>
+					Describe the MVC design pattern as it applies to web servers -
+					start from initial HTTP request and end with writing the response.
+
+				<ol>
+					<li>Request comes in (e.g. GET resource A) and is fielded by a
+						DispatcherServlet.</li>
+					<li>DispatcherServlet dispatches the request to the
+						appropriate controller.</li>
+					<li>The controller interprets the URI's query parameters and
+						queries the model.</li>
+					<li>The model contains the domain data and this is received
+						and formatted ready for viewing</li>
+					<li>The controller returns typically a view name which the
+						Dispatcher looks up to get an actual view (e.g. a JSP)</li>
+					<li>The Dispatcher passes the formatted model data to the view
+						(JSP)</li>
+					<li>The view renders the model data in HTML</li>
+					<li>The HTML is sent back to the client and rendered in the
+						browser</li>
+				</ol>
+
+				This structure allows views and models to remain as independent as
+				possible, which promotes re-use and increases the code's
+				flexibility.</li>
+
 				<li id="question16"><strong>Q:</strong>
-					<h3 style="display: inline">Feature Question</h3>
-					<br> Describe the pros and cons of version control.</li>
+					<h3 class=inlineQ>Feature Question</h3> <br> Describe the pros
+					and cons of version control.
+
+					<ul>
+						<li>+ allows concurrent modification of source files</li>
+						<li>+ allows feature branch creation and merging</li>
+						<li>+ helps prevent catastrophic loss of source code</li>
+						<li>+ helps to foster a professional attitude toward coding</li>
+						<li>+ allows you to "go back in time" to any previous version
+							of the code (including renames in git)</li>
+						<li>+ encourages comments to be made for each change</li>
+						<li>+ performs a lot of merging work for you as opposed to
+							merging by hand</li>
+						<li>+ great way of checking that no-one's modified deployed
+							production code (put it in a repository)</li>
+					</ul>
+					<ul>
+						<li>- can be steep learning curve e.g. git</li>
+						<li>- when learning, people can trash the repository and
+							delay colleagues</li>
+						<li>- when making lots of quick changes, having to do a
+							checkin for each one can feel onerous</li>
+						<li>- some edge cases can be time-consuming e.g. dealing with
+							binary files, CRLF v.s. LF, file permissions etc.</li>
+					</ul></li>
 			</ul>
 		</div>
 
 	</div>
-	<style type="text/css">
-.invisibleQuestion {
-	color: #FFFFFF;
-}
-</style>
 </body>
 </html>
