@@ -11,27 +11,27 @@ function beginTheTest() {
 
 		// Shrink to nothing.
 		Y.one('#introduction').transition({
-			duration : 1, // seconds
+			duration : 0.5, // seconds
 			easing : 'ease-out', // CSS syntax
 			height : 0,
 			top : '100px',
 
 			width : {
-				delay : 1,
+				delay : 0, // TODO: change to 1
 				duration : 0.5,
 				easing : 'ease-in',
 				value : 0
 			},
 
 			left : {
-				delay : 1,
+				delay : 0, // TODO: change to 1
 				duration : 0.5,
 				easing : 'ease-in',
 				value : '150px'
 			},
 
 			opacity : {
-				delay : 1.5,
+				delay : 0.5,
 				duration : 0.25,
 				value : 0
 			}
@@ -39,8 +39,6 @@ function beginTheTest() {
 			this.remove();
 			Y.one('#theTest').show(true);
 		});
-		
-		
 	});
 }
 
