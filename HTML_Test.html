@@ -135,12 +135,49 @@
 				<li id="question14"><strong>Q:</strong>
 					<h3 class=inlineQ>Feature Question</h3> <br>
 					<ol>
-						<li>Show how to include a variable in a page using PHP</li>
-						<li>Show how to loop over a collection of elements in PHP</li>
-						<li>Show an IF conditional in PHP</li>
-						<li>Show an IF/ELSEIF/ELSE conditional in PHP</li>
+						<li>Show how to include a variable in a page using PHP<br>
+						<code>$foo=1; $bar=2; <br>
+						include 'file.php';</code></li>
+						<li>Show how to loop over a collection of elements in PHP<br> 
+						<code>$array = array("1" => "Pete", "foo" => "Kingswell", 5 , 3 => 6);<br> 
+								foreach( $array as $key => $value ){ <br>
+									&nbsp;echo $key."\t=>\t".$value."\n"; <br>
+								} </code></li>
+						<li>Show an IF conditional in PHP<br>
+						<code>
+				        if (isset($this)) {<br>
+				            &nbsp;echo '$this is defined (';<br>
+            				&nbsp;echo get_class($this);<br>
+            				&nbsp;echo ")\n";<br>
+        				} else {<br>
+            				&nbsp;echo "\$this is not defined.\n";<br>
+        				}<br>
+						</code></li>
+						<li><code>Show an IF/ELSEIF/ELSE conditional in PHP<br>
+						if ($a > $b) {<br>
+						    &nbsp;echo "a is bigger than b";<br>
+						} elseif ($a == $b) {<br>
+						    &nbsp;echo "a is equal to b";<br>
+						} else {<br>
+						    &nbsp;echo "a is smaller than b";<br>
+						}</code><br></li>
 						<li>Show three ways to include content from another file in
-							PHP</li>
+							PHP<br>
+						<code>include 'filename';<br>
+						or<br>
+						require 'filename';<br>
+						or<br>
+						$string = get_include_contents('somefile.php');<br>
+						<br>
+						function get_include_contents($filename) {<br>
+						    &nbsp;if (is_file($filename)) {<br>
+						        &nbsp;&nbsp;ob_start();<br>
+						        &nbsp;&nbsp;include $filename;<br>
+						        &nbsp;&nbsp;return ob_get_clean();<br>
+						    &nbsp;}<br>
+						    &nbsp;&nbsp;return false;<br>
+						&nbsp;}<br>
+						</code></li>
 					</ol></li>
 				<li id="question15"><strong>Q:</strong>
 					<h3 class=inlineQ>Adventure Question</h3> <br>
